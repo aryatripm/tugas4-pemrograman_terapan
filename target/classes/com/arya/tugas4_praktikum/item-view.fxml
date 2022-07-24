@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.arya.tugas4_praktikum.controller.ItemsController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" onAction="#showCategory" text="Show Category Management">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="F2" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator></MenuItem>
+                        <MenuItem mnemonicParsing="false" text="Close">
+                           <accelerator>
+                              <KeyCodeCombination alt="DOWN" code="X" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                           </accelerator>
+                        </MenuItem>
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="36.0" prefWidth="250.0" spacing="10.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="57.0" text="ID" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="id" prefHeight="26.0" prefWidth="303.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="36.0" prefWidth="250.0" spacing="10.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="58.0" text="Name" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="name" prefHeight="26.0" prefWidth="290.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="86.0" prefHeight="36.0" prefWidth="250.0" spacing="10.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="57.0" text="Price" HBox.hgrow="ALWAYS" />
+                              <TextField fx:id="price" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="122.0" prefHeight="95.0" prefWidth="250.0" spacing="10.0">
+                           <children>
+                              <Label text="Description" HBox.hgrow="ALWAYS" />
+                              <TextArea fx:id="description" prefHeight="84.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="82.0" prefHeight="36.0" prefWidth="250.0" spacing="10.0">
+                           <children>
+                              <Label prefHeight="18.0" prefWidth="61.0" text="Category" HBox.hgrow="ALWAYS" />
+                              <ComboBox fx:id="category" prefWidth="150.0" HBox.hgrow="ALWAYS" />
+                           </children>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <ButtonBar prefHeight="40.0" prefWidth="0.0">
+                          <buttons>
+                            <Button fx:id="save" minWidth="0.0" mnemonicParsing="false" onAction="#save" prefHeight="26.0" prefWidth="0.0" text="Save">
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Button>
+                              <Button fx:id="reset" layoutX="175.0" layoutY="12.0" minWidth="0.0" mnemonicParsing="false" onAction="#reset" prefHeight="26.0" prefWidth="243.0" text="Reset" />
+                              <Button fx:id="update" layoutX="221.0" layoutY="12.0" mnemonicParsing="false" onAction="#update" text="Update" />
+                              <Button fx:id="delete" layoutX="264.0" layoutY="12.0" mnemonicParsing="false" onAction="#delete" text="Delete" />
+                          </buttons>
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </ButtonBar>
+                     </children>
+                  </VBox>
+                  <TableView fx:id="table" onMouseClicked="#tableClicked" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
+                      <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
+                        <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
+                    </columns>
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
+                  </TableView>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
