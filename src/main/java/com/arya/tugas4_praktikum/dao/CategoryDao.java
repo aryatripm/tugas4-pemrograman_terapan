@@ -55,16 +55,15 @@ public class CategoryDao implements DaoInterface<Category> {
 
     @Override
     public void update(Category data) {
-        String query = "UPDATE category" +
-                "SET id = ?, name = ?" +
+        String query = "UPDATE category " +
+                "SET name = ? " +
                 "WHERE id = ?";
         PreparedStatement preparedStatement;
 
         try {
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, data.getId());
-            preparedStatement.setString(2, data.getName());
-            preparedStatement.setInt(3, data.getId());
+            preparedStatement.setString(1, data.getName());
+            preparedStatement.setInt(2, data.getId());
             int result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
