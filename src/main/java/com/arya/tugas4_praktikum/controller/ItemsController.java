@@ -5,6 +5,7 @@ import com.arya.tugas4_praktikum.dao.CategoryDao;
 import com.arya.tugas4_praktikum.dao.ItemsDao;
 import com.arya.tugas4_praktikum.model.Category;
 import com.arya.tugas4_praktikum.model.Item;
+import com.arya.tugas4_praktikum.util.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,8 +15,15 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ItemsController {
 
@@ -43,7 +51,10 @@ public class ItemsController {
     private CategoryController categoryController;
     private Stage stage;
 
+    private Connection connection;
+
     public void initialize() {
+        connection = DatabaseConnection.getConnection();
         stage = new Stage();
         itemsDao = new ItemsDao();
         categoryDao = new CategoryDao();
@@ -180,5 +191,19 @@ public class ItemsController {
     public void refrehCategories() {
         categories = categoryDao.read();
         category.setItems(categories);
+    }
+
+    public void simpleReport(ActionEvent actionEvent) throws JRException {
+        Map parameter = new HashMap();
+        JasperPrint jasperPrint = JasperFillManager.fillReport("report/Simple_Report.jasper", parameter, connection);
+        JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+        jasperViewer.setVisible(true);
+    }
+
+    public void groupReport(ActionEvent actionEvent) throws JRException {
+        Map parameter = new HashMap();
+        JasperPrint jasperPrint = JasperFillManager.fillReport("report/Group_Report.jasper", parameter, connection);
+        JasperViewer jasperViewer = new JasperViewer(jasperPrint, false);
+        jasperViewer.setVisible(true);
     }
 }

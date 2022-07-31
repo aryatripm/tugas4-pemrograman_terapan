@@ -3,6 +3,7 @@ module com.arya.tugas4_praktikum {
     requires javafx.fxml;
     requires java.sql;
     requires mysql.connector.java;
+    requires jasperreports;
 
 
     opens com.arya.tugas4_praktikum to javafx.fxml;
